@@ -14,7 +14,7 @@ class Scraper
      # :recipe_titles[title] = {:url = title.attr('href')}
       
     end
-    #binding.pry
+    binding.pry
   end
   
 end
