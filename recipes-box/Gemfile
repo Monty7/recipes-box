@@ -1,4 +1,7 @@
 source "https://rubygems.org"
 
+gem 'pry'
+gem 'rake'
+gem 'require_all'
 # Specify your gem's dependencies in recipes-box.gemspec
-gemspec
+#gemspec
