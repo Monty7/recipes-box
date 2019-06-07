@@ -2,19 +2,20 @@ class Scraper
   attr_accessor :recipe_titles
   def self.get_page 
   #  page = open("https://www.connoisseurusveg.com/recipe-index/")
-  @recipe_titles = {}
-    page = open("https://sweetpotatosoul.com/recipes")
+  recipes = {}
+    page = open("https://www.connoisseurusveg.com/recipe-index/")
     sleep 5
     doc = Nokogiri::HTML(page)
-    titles = doc.css('.recipe h4 a')
-      
+   
+    titles = doc.css('.entry-title a')
+
     titles.each do |title|
-      binding.pry
-      
-     # :recipe_titles[title] = {:url = title.attr('href')}
-      
+     
+      title_txt = title.text.to_sym
+      url = title.attr('href')
+      recipes[title_txt] =  {:url => url}
+  
     end
-    binding.pry
   end
   
 end
