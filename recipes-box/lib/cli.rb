@@ -8,26 +8,27 @@ class CLI
   def run 
     puts "Enter your name"
     @user = gets.chomp
-    list_recipes
+    puts "Welcome, #{user}!"
+   # list_recipes
     menu 
     goodbye
   end
     
   def list_recipes
-    puts "Welcome, #{user}!"
+    
      #List out the recipes from Scrap
-     Scraper.get_page
+     Scraper.get_recipe_titles
   end
   
   def menu
     
     input = nil
     while input != "exit"
-      puts "Enter a number for a recipe, or 'list' to see the menu, or type exit to leave."
+      puts "Enter a number for a recipe, or type 'list' to see the menu, or type exit to leave."
       input = gets.chomp.downcase
       case input
-        when "1"
-          puts "One"
+        when "list"
+          list_recipes
         when "2"
           puts "Two"
         when "exit"
