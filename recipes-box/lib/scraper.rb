@@ -1,5 +1,6 @@
 class Scraper 
   attr_accessor :recipe_titles
+  
   def self.get_page 
   #  page = open("https://www.connoisseurusveg.com/recipe-index/")
   recipes = {}
@@ -16,6 +17,12 @@ class Scraper
       recipes[title_txt] =  {:url => url}
   
     end
+    recipes
   end
-  
+
+  def get_recipe_title
+    self.get_page
+   # binding.pry
+  end
+  binding.pry
 end
