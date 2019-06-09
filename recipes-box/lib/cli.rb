@@ -9,7 +9,7 @@ class CLI
     puts "Enter your name"
     @user = gets.chomp
     puts "Welcome, #{user}!"
-   # list_recipes
+  
     menu 
     goodbye
   end
@@ -20,7 +20,8 @@ class CLI
      Scraper.get_recipe_titles
      puts "Enter a number for a recipe:"
      input = gets.chomp.downcase
-     self.select_title(input)
+     
+     Scraper.select_title(input)
   end
   
   def menu
@@ -32,9 +33,6 @@ class CLI
       case input
         when "list"
           list_recipes
-          
-        when "2"
-          puts "Two"
         when "exit"
           puts "exit"
         else
