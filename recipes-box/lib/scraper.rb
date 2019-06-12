@@ -5,7 +5,7 @@ class Scraper
   
   def self.get_page
    page = open("https://www.connoisseurusveg.com/recipe-index/")
-   recipes = {}
+   recipes = []
     doc = Nokogiri::HTML(page)
    
     titles = doc.css('.entry-title a')
@@ -15,27 +15,15 @@ class Scraper
       title_txt = title.text
       url = title.attr('href')
   
-      recipes[title_txt] = {:title => title_txt, :url => url}
+      recipes << {:title => title_txt, :url => url}
                       
     end
-   
     recipes
   end
   
 
 
-  def self.get_recipe_titles
-    counter = 0
-    recipe_list = []
-    self.get_page.each do |key, value|
-      counter += 1
-      recipe_list << [counter, value[:title]]
-  
-      puts "#{counter}. #{value[:title]}"
-    end
-    recipe_list
-  # binding.pry
-  end
+
 
   # def self.add_recipe
   #   select_title

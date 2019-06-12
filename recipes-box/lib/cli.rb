@@ -1,5 +1,5 @@
 class CLI
-  extend Recipes::ClassMethods
+  
   
   attr_accessor :user, :box, :select_title
   def initialize(user = "guest")
@@ -18,9 +18,9 @@ class CLI
   end
     
   def list_recipes
-    binding.pry
+   
      #List out the recipes from Scrap
-     Scraper.get_recipe_titles
+     Recipe.get_recipe_titles
      puts "Enter a number for a recipe:"
      input = gets.chomp.downcase
      #binding.pry
