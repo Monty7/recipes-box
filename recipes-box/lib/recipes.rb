@@ -23,7 +23,7 @@ class Recipe
     self.create_recipes(recipe_data)
   end
   
-  # def add_number_attribute
+  # def renumber_attribute
   #   all.each_with_index do |x, y|
   #     binding.pry
   #   end
@@ -40,15 +40,30 @@ class Recipe
   end
   
   def self.select_recipe(selection)
+    selected_recipe = nil
     all.each do |recipe|
     #  binding.pry
       if selection == recipe.num
         puts recipe.title
+        selected_recipe = recipe
       end
-      puts "Would you like to add this recipe to your recipe box?"
-      puts "Enter 'Y' for Yes or 'N' for No:" 
-      input = gets.chomp.downcase
-      add_recipe_in_box(input)
+     
+     # add_recipe_in_box(input)
+    end
+    binding.pry
+     selected_recipe
+  end
+  
+  def add_recipe_in_box?()
+    puts "Would you like to add this recipe to your recipe box?"
+    puts "Enter 'Y' for Yes or 'N' for No:" 
+    input = gets.chomp.downcase
+    case 'input'
+      when 'y'
+        #push to instance box
+      when 'n'
+        
+        
     end
   end
   
