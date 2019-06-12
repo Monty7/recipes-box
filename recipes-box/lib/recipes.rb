@@ -1,19 +1,20 @@
 class Recipe
-  attr_accessor :title, :url
+  attr_accessor :title, :url, :num
   
   @@all = []
   
-  def initialize(title, url)
+  def initialize(title, url, num = 0)
     @title = title
     @url = url
+    @num = num
     @@all << self
   end
   
   def self.create_recipes(recipes_array)
     #recipe_data = Scraper.get_page
-    recipes_array.each do |recipe|
-   
-      Recipe.new(recipe[:title], recipe[:url])
+    recipes_array.each_with_index do |recipe, index|
+ # binding.pry
+      Recipe.new(recipe[:title], recipe[:url], index + 1)
     end
   end
   
@@ -22,8 +23,8 @@ class Recipe
     recipe_data = Scraper.get_page
     
     self.create_recipes(recipe_data)
-      binding.pry
-      
+     binding.pry
+     
     # counter = 0
     # recipe_list = []
     # self.get_page.each do |key, value|
@@ -35,6 +36,13 @@ class Recipe
     # recipe_list
   # binding.pry
   end
+  
+  # def add_number_attribute
+  #   all.each_with_index do |x, y|
+  #     binding.pry
+  #   end
+  # end
+  
   
   def all
     @all
