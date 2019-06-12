@@ -23,7 +23,7 @@ class Recipe
     recipe_data = Scraper.get_page
     
     self.create_recipes(recipe_data)
-     binding.pry
+   
      
     # counter = 0
     # recipe_list = []
@@ -42,9 +42,15 @@ class Recipe
   #     binding.pry
   #   end
   # end
+  def self.display_recipe_list
+    self.get_recipe_titles
+    all.each do |recipe|
+      puts "#{recipe.num}. #{recipe.title}"
+      #binding.pry
+    end
+  end
   
-  
-  def all
-    @all
+  def self.all
+    @@all
   end
 end

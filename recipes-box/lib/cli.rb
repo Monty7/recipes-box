@@ -42,7 +42,7 @@ class CLI
       input = gets.chomp.downcase
       case input
         when "list"
-          list_recipes
+          Recipe.display_recipe_list
         when "exit"
           puts "exit"
         else
