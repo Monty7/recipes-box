@@ -19,22 +19,8 @@ class Recipe
   end
   
   def self.get_recipe_titles
-    
     recipe_data = Scraper.get_page
-    
     self.create_recipes(recipe_data)
-   
-     
-    # counter = 0
-    # recipe_list = []
-    # self.get_page.each do |key, value|
-    #   counter += 1
-    #   recipe_list << [counter, value[:title]]
-  
-    #   puts "#{counter}. #{value[:title]}"
-    # end
-    # recipe_list
-  # binding.pry
   end
   
   # def add_number_attribute
@@ -47,6 +33,22 @@ class Recipe
     all.each do |recipe|
       puts "#{recipe.num}. #{recipe.title}"
       #binding.pry
+    end
+    puts "Select a recipe number:"
+    input = gets.chomp.downcase.to_i
+    self.select_recipe(input)
+  end
+  
+  def self.select_recipe(selection)
+    all.each do |recipe|
+    #  binding.pry
+      if selection == recipe.num
+        puts recipe.title
+      end
+      puts "Would you like to add this recipe to your recipe box?"
+      puts "Enter 'Y' for Yes or 'N' for No:" 
+      input = gets.chomp.downcase
+      add_recipe_in_box(input)
     end
   end
   
