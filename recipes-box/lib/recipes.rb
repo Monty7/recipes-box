@@ -32,35 +32,47 @@ class Recipe
     self.get_recipe_titles
     all.each do |recipe|
       puts "#{recipe.num}. #{recipe.title}"
-      #binding.pry
     end
-    puts "Select a recipe number:"
-    input = gets.chomp.downcase.to_i
-    self.select_recipe(input)
+    self.recipe_selection
   end
   
-  def self.select_recipe(selection)
+  def self.recipe_selection
+    puts "Select a recipe number:"
+    selected_num
+  end
+  
+  def self.selected_num
+    input = gets.chomp.downcase.to_i
+    self.dislay_selection(input)
+  end
+  
+  def self.dislay_selection(selection_num)
     selected_recipe = nil
     all.each do |recipe|
     #  binding.pry
-      if selection == recipe.num
-        puts recipe.title
+      if selection_num == recipe.num
+        puts "You selected: #{recipe.title}."
         selected_recipe = recipe
       end
-     
-     # add_recipe_in_box(input)
     end
-    binding.pry
+    
+   # binding.pry
      selected_recipe
   end
   
-  def add_recipe_in_box?()
+  def recipe_selected_title
+    
+  end
+
+  
+  def add_recipe_in_box?
     puts "Would you like to add this recipe to your recipe box?"
     puts "Enter 'Y' for Yes or 'N' for No:" 
     input = gets.chomp.downcase
     case 'input'
       when 'y'
         #push to instance box
+       # Recipes.select_recipe()
       when 'n'
         
         

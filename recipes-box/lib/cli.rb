@@ -44,7 +44,7 @@ class CLI
         when "list"
           Recipe.display_recipe_list
         when "exit"
-          puts "exit"
+          goodbye
         else
           puts "Type 'list' or 'exit'."
       end
