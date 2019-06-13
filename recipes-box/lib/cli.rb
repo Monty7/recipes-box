@@ -17,14 +17,9 @@ class CLI
   end
     
   def list_recipes
-   
-     #List out the recipes from Scrap
      Recipe.get_recipe_titles
      puts "Enter a number for a recipe:"
      input = gets.chomp.downcase
-     #binding.pry
-     Scraper.select_title(input)
-    # @box << Scraper.add_recipe(recipe)
   end
   
   
@@ -114,13 +109,15 @@ class CLI
       prompt = ">> "
       print prompt
       
-      while input = gets.chomp.to_i
-        #  binding.pry
+      
+      while input = gets.chomp
+         #binding.pry
        # case input
-         if input <= @box.size
-            puts @box[input - 1].url
+         if input == 'menu'
+            menu
             break
-          
+         elsif input.to_i <= @box.size
+          puts @box[input.to_i - 1].url
           else
             puts "Enter a vaild number that is listed in your recipe box:"
             print prompt
@@ -128,6 +125,7 @@ class CLI
         #binding.pry
         end
       end
+      menu
     end
   end
   

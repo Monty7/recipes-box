@@ -1,7 +1,7 @@
 # require 'nokogiri'
 # require 'open-uri'
 class Scraper 
-  attr_accessor :get_recipe_titles, :select_title, :CLI, :box
+  attr_accessor :get_recipe_titles
   
   def self.get_page
    page = open("https://www.connoisseurusveg.com/recipe-index/")
