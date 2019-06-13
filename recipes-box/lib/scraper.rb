@@ -21,11 +21,6 @@ class Scraper
     recipes
   end
   
-  # def renumber_attribute
-  #   all.each_with_index do |x, y|
-  #     binding.pry
-  #   end
-  # end
    
  
 end

@@ -11,9 +11,7 @@ class Recipe
   end
   
   def self.create_recipes(recipes_array)
-    #recipe_data = Scraper.get_page
-    recipes_array.each_with_index do |recipe, index|
- # binding.pry
+      recipes_array.each_with_index do |recipe, index|
       Recipe.new(recipe[:title], recipe[:url], index + 1)
     end
   end
@@ -23,22 +21,10 @@ class Recipe
     self.create_recipes(recipe_data)
   end
   
-
-
-  
-
-  
   def self.test(title)
     title
   end
-  
-  def recipe_selected_title
-    
-  end
 
-  
-
-  
   def self.all
     @@all
   end

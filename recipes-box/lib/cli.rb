@@ -2,35 +2,34 @@ class CLI
   
   attr_accessor :user, :box, :select_title
   def initialize(user = "guest")
-     @user = user
+    @user = user
     @box = []
-    
   end
   
   def run 
     puts "Enter your name"
     @user = gets.chomp
     puts "Welcome, #{user}!"
+    Recipe.get_recipe_titles #should only be called one time
     menu 
   end
   
   def menu
     puts "Type 'list' to pick a recipe, type 'box' to display a list of your added recipes, or type 'exit' to leave."
      input = gets.chomp.downcase
-        if input == "list"
-          display_recipe_list
-        elsif input == "box"
-          display_user_box
-        elsif input == "exit"
-           goodbye
-        else
-          puts "Enter a valid selection"
-      end
-
+      if input == "list"
+        display_recipe_list
+      elsif input == "box"
+        display_user_box
+      elsif input == "exit"
+         goodbye
+      else
+        puts "Enter a valid selection"
+    end
   end
   
   def display_recipe_list
-    Recipe.get_recipe_titles
+
     Recipe.all.each do |recipe|
       puts "#{recipe.num}. #{recipe.title}"
     end
@@ -49,7 +48,7 @@ class CLI
     Recipe.all.each do |recipe|
     #  binding.pry
       if selection_num == recipe.num
-        puts "You selected: #{recipe.title}." #NEEDS DEBUGGING - PUTS repeats here
+        puts "You selected: #{recipe.title}." #NEEDS DEBUGGING - PUTS repeats here -Everytime list is called it adds on
         selected_recipe = recipe
       end
     end
@@ -74,7 +73,6 @@ class CLI
   end
   
   def display_user_box
-#binding.pry
     
     if @box.empty?
       puts "There is nothing in your recipe box."
@@ -99,7 +97,7 @@ class CLI
         puts @box[box_input.to_i - 1].url
        else
         puts "Enter a vaild number that is listed in your recipe box:"
-        print ">>"
+        print ">> "
         next_decision
       end
   end
