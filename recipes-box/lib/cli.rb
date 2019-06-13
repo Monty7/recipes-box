@@ -27,14 +27,9 @@ class CLI
     # @box << Scraper.add_recipe(recipe)
   end
   
-  # def add_recipe(recipe)
-  #   puts "hey!"
-  #   binding.pry
-  # # @box << recipe
-  # end
   
   def menu
-    puts "Type 'list' to pick a recipe or type exit to leave."
+    puts "Type 'list' to pick a recipe, type 'box' to display a list of your added recipes, or type 'exit' to leave."
      input = nil
     while input != "exit"
       input = gets.chomp.downcase
@@ -63,10 +58,12 @@ class CLI
   
   def recipe_selection
     puts "Select a recipe number:"
+    print ">> "
     selected_num
   end
   
   def selected_num
+    input = nil
     input = gets.chomp.downcase.to_i
     display_selection(input)
   end
@@ -80,29 +77,31 @@ class CLI
         selected_recipe = recipe
       end
     end
-   # self.test(selected_recipe)
-  
-     
      add_recipe_in_box?(selected_recipe)
   end
   
   def add_recipe_in_box?(selection)
-    puts "Would you like to add this recipe to your recipe box?"
-    puts "Enter 'Y' for Yes or 'N' for No:" 
-    input = gets.chomp.downcase
-    case input
-      when 'y'
-        #push to instance box
-       @box << selection
-      display_user_box
-      when 'n'
-        menu
+    input = nil
+      puts "Would you like to add this recipe to your recipe box?"
+      puts "Enter 'Y' for Yes or 'N' for No:" 
+      print ">> "
+      input = gets.chomp.downcase
+      if input == 'y'
+        
+          #push to instance box
+        @box << selection
+        display_user_box
+      elsif 'n' == input
+          display_user_box
+        else
+          menu
         
     end
   end
   
   def display_user_box
 #binding.pry
+    
     if @box.empty?
       puts "There is nothing in your recipe box."
       menu
@@ -110,10 +109,25 @@ class CLI
       
       @box.each.with_index(1) do |recipe, index|
         puts "#{index}. #{recipe.title}"
-
       end
-      puts "Select a number to display recipe or type 'menu':"
+      puts "Select a number to display the recipe ingredients and directions or type 'menu' to go back to the menu:"
+      prompt = ">> "
+      print prompt
       
+      while input = gets.chomp.to_i
+        #  binding.pry
+       # case input
+         if input <= @box.size
+            puts @box[input - 1].url
+            break
+          
+          else
+            puts "Enter a vaild number that is listed in your recipe box:"
+            print prompt
+            
+        #binding.pry
+        end
+      end
     end
   end
   
