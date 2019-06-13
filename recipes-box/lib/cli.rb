@@ -12,34 +12,30 @@ class CLI
     puts "Enter your name"
     @user = gets.chomp
     puts "Welcome, #{user}!"
-  
     menu 
   end
-    
-  def list_recipes
-     Recipe.get_recipe_titles
-     puts "Enter a number for a recipe:"
-     input = gets.chomp.downcase
-  end
-  
   
   def menu
     puts "Type 'list' to pick a recipe, type 'box' to display a list of your added recipes, or type 'exit' to leave."
      input = nil
-    while input != "exit"
+  #  if input != "exit"
       input = gets.chomp.downcase
      
       case input
         when "list"
           display_recipe_list
-
+        
         when "box"
           display_user_box
+         
+        when "exit"
+           goodbye #DEBUG keeps displaying whenever Im directed back to the menu when i select exit
+          
         else
-          puts "Type 'list' or 'exit'."
+          puts "Enter a valid selection"
       end
-    end
-    goodbye
+   # end
+   
 
   end
   
@@ -68,7 +64,7 @@ class CLI
     Recipe.all.each do |recipe|
     #  binding.pry
       if selection_num == recipe.num
-        puts "You selected: #{recipe.title}."
+        puts "You selected: #{recipe.title}." #NEEDS DEBUGGING - PUTS repeats here
         selected_recipe = recipe
       end
     end
@@ -118,9 +114,9 @@ class CLI
             break
          elsif input.to_i <= @box.size
           puts @box[input.to_i - 1].url
-          else
-            puts "Enter a vaild number that is listed in your recipe box:"
-            print prompt
+         else
+          puts "Enter a vaild number that is listed in your recipe box:"
+          print prompt
             
         #binding.pry
         end
@@ -131,7 +127,7 @@ class CLI
   
   def goodbye
     puts "Thank You, Goodbye!"
-    
+  
   end
 
 end
