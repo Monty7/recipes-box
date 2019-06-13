@@ -1,6 +1,5 @@
 class CLI
   
-  
   attr_accessor :user, :box, :select_title
   def initialize(user = "guest")
      @user = user
@@ -18,19 +17,15 @@ class CLI
   def menu
     puts "Type 'list' to pick a recipe, type 'box' to display a list of your added recipes, or type 'exit' to leave."
      input = gets.chomp.downcase
-  while input == "exit" || input == "box" || input == "list"
-      case input
-        when "list"
+        if input == "list"
           display_recipe_list
-        when "box"
+        elsif input == "box"
           display_user_box
-        when "exit"
+        elsif input == "exit"
            goodbye
-           break
         else
           puts "Enter a valid selection"
       end
-    end
 
   end
   
@@ -68,15 +63,13 @@ class CLI
       print ">> "
       input = gets.chomp.downcase
       if input == 'y'
-        
-          #push to instance box
+
         @box << selection
         display_user_box
       elsif 'n' == input
           display_user_box
-        else
+      else
           menu
-        
     end
   end
   
@@ -92,27 +85,23 @@ class CLI
         puts "#{index}. #{recipe.title}"
       end
       puts "Select a number to display the recipe ingredients and directions or type 'menu' to go back to the menu:"
-      prompt = ">> "
-      print prompt
-      
-      
-      while box_input = gets.chomp.downcase
-         #binding.pry
-       # case input
-         if box_input == 'menu'
-            menu
-      
-         elsif box_input.to_i <= @box.size
-          puts @box[box_input.to_i - 1].url
-          break
-         else
-          puts "Enter a vaild number that is listed in your recipe box:"
-          print prompt
-            box_input = gets.chomp.downcase
-        #binding.pry
-        end
-      end
+      print ">> "
+      next_decision
+  
     end
+  end
+  
+  def next_decision 
+   box_input = gets.chomp.downcase
+       if box_input == 'menu'
+          menu
+       elsif box_input.to_i <= @box.size
+        puts @box[box_input.to_i - 1].url
+       else
+        puts "Enter a vaild number that is listed in your recipe box:"
+        print ">>"
+        next_decision
+      end
   end
   
   def goodbye
