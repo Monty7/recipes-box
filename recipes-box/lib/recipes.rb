@@ -20,10 +20,6 @@ class Recipe
     recipe_data = Scraper.get_page
     self.create_recipes(recipe_data)
   end
-  
-  def self.test(title)
-    title
-  end
 
   def self.all
     @@all

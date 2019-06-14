@@ -1,15 +1,15 @@
 class CLI
   
-  attr_accessor :user, :box, :select_title
-  def initialize(user = "guest")
-    @user = user
+  attr_accessor :user, :box
+  def initialize(name = "guest")
+    @user = name
     @box = []
   end
   
   def run 
     puts "Enter your name"
     @user = gets.chomp
-    puts "Welcome, #{user}!"
+    puts "Welcome, #{user}!".colorize(:light_magenta)
     Recipe.get_recipe_titles 
     menu 
   end
@@ -99,7 +99,7 @@ class CLI
   end
   
   def goodbye
-    puts "Thank You, Goodbye!"
+    puts "Thank You, Goodbye!".colorize(:yellow)
   end
 
 end
