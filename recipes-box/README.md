@@ -1,6 +1,11 @@
 # Recipes::Box
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/recipes/box`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new gem! 
+
+##About This gem
+Displays recipes for a user to be able to save recipes into their own recipe box. The user would be able to view the link to the recipe for viewing the ingredients and directions on how to prepare the recipe.
+
+In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/recipes/box`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
 

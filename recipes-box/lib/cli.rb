@@ -10,7 +10,9 @@ class CLI
     puts "Enter your name"
     @user = gets.chomp
     puts "Welcome, #{user}!".colorize(:light_magenta)
-    Recipe.get_recipe_titles 
+    Chef.create_two_chefs
+    Recipe.get_recipe_titles
+    #binding.pry
     menu 
   end
   
@@ -44,14 +46,12 @@ class CLI
   end
   
   def display_selection(selection_num)
-    selected_recipe = nil
-    Recipe.all.each do |recipe|
-      if selection_num == recipe.num
-        puts "You selected: #{recipe.title}.".colorize(:yellow)
-        selected_recipe = recipe
-      end
+    
+    selected_recipe = Recipe.all.find do |recipe|
+      selection_num == recipe.num
     end
-     add_recipe_in_box?(selected_recipe)
+    puts "You selected: #{selected_recipe.title}.".colorize(:yellow)
+    add_recipe_in_box?(selected_recipe)
   end
   
   def add_recipe_in_box?(selection)
