@@ -16,21 +16,20 @@ class CLI
   
   def menu
     puts "Type 'list' to pick a recipe, type 'box' to display a list of your added recipes, or type 'exit' to leave."
-     input = gets.chomp.downcase
-      if input == "list"
-        display_recipe_list
-      elsif input == "box"
-        display_user_box
-      elsif input == "exit"
-         goodbye
-      else
-        puts "Enter a valid selection".colorize(:red)
-        menu
+    input = gets.chomp.downcase
+    if input == "list"
+      display_recipe_list
+    elsif input == "box"
+      display_user_box
+    elsif input == "exit"
+       goodbye
+    else
+      puts "Enter a valid selection".colorize(:red)
+      menu
     end
   end
   
   def display_recipe_list
-
     Recipe.all.each do |recipe|
       puts "#{recipe.num}. #{recipe.title}"
     end
@@ -62,7 +61,6 @@ class CLI
       print ">> "
       input = gets.chomp.downcase
       if input == 'y'
-
         @box << selection
         display_user_box
       elsif 'n' == input
@@ -73,40 +71,35 @@ class CLI
   end
   
   def display_user_box
-    
     if @box.empty?
       puts "There is nothing in your recipe box."
       menu
     else
-      
       @box.each.with_index(1) do |recipe, index|
         puts "#{index}. #{recipe.title}".colorize(:light_blue)
       end
       puts "Select a number for the recipe ingredients and directions or type 'menu' to go back to the menu:"
       print ">> "
       next_decision
-  
     end
   end
   
   def next_decision 
    box_input = gets.chomp.downcase
-       if box_input == 'menu'
-          menu
-       elsif box_input.to_i <= @box.size
-        puts "Go to this page to see ingredients and directions: #{@box[box_input.to_i - 1].url}.".colorize(:light_magenta)
-        binding.pry
-        menu
-       else
-        puts "Enter a vaild number that is listed in your recipe box:"
-        print ">> "
-        next_decision
-      end
+    if box_input == 'menu'
+      menu
+    elsif box_input.to_i <= @box.size
+      puts "Go to this page to see ingredients and directions: #{@box[box_input.to_i - 1].url}.".colorize(:light_magenta)
+      menu
+    else
+      puts "Enter a vaild number that is listed in your recipe box:"
+      print ">> "
+      next_decision
+    end
   end
   
   def goodbye
     puts "Thank You, Goodbye!"
-  
   end
 
 end
