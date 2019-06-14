@@ -10,7 +10,7 @@ class CLI
     puts "Enter your name"
     @user = gets.chomp
     puts "Welcome, #{user}!"
-    Recipe.get_recipe_titles #should only be called one time
+    Recipe.get_recipe_titles 
     menu 
   end
   
@@ -24,7 +24,8 @@ class CLI
       elsif input == "exit"
          goodbye
       else
-        puts "Enter a valid selection"
+        puts "Enter a valid selection".colorize(:red)
+        menu
     end
   end
   
@@ -46,9 +47,8 @@ class CLI
   def display_selection(selection_num)
     selected_recipe = nil
     Recipe.all.each do |recipe|
-    #  binding.pry
       if selection_num == recipe.num
-        puts "You selected: #{recipe.title}." #NEEDS DEBUGGING - PUTS repeats here -Everytime list is called it adds on
+        puts "You selected: #{recipe.title}.".colorize(:yellow)
         selected_recipe = recipe
       end
     end
@@ -80,9 +80,9 @@ class CLI
     else
       
       @box.each.with_index(1) do |recipe, index|
-        puts "#{index}. #{recipe.title}"
+        puts "#{index}. #{recipe.title}".colorize(:light_blue)
       end
-      puts "Select a number to display the recipe ingredients and directions or type 'menu' to go back to the menu:"
+      puts "Select a number for the recipe ingredients and directions or type 'menu' to go back to the menu:"
       print ">> "
       next_decision
   
@@ -94,7 +94,9 @@ class CLI
        if box_input == 'menu'
           menu
        elsif box_input.to_i <= @box.size
-        puts @box[box_input.to_i - 1].url
+        puts "Go to this page to see ingredients and directions: #{@box[box_input.to_i - 1].url}.".colorize(:light_magenta)
+        binding.pry
+        menu
        else
         puts "Enter a vaild number that is listed in your recipe box:"
         print ">> "
